@@ -112,7 +112,8 @@ class Modbus {
             FC_READ_FILE_REC    = 0x14, // Read File Record
             FC_WRITE_FILE_REC   = 0x15, // Write File Record
             FC_MASKWRITE_REG    = 0x16, // Mask Write Register
-            FC_READWRITE_REGS   = 0x17  // Read/Write Multiple registers
+            FC_READWRITE_REGS   = 0x17, // Read/Write Multiple registers
+            FC_ECTO_DISCOVERY   = 0x46  // Ecotcontrol discovery
         };
         //Exception Codes
         //Custom result codes used internally and for callbacks but never used for Modbus responce

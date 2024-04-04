@@ -298,7 +298,7 @@ void ModbusRTUTemplate::task() {
     } else {
 		if (_reply == EX_PASSTHROUGH || _reply == EX_FORCE_PROCESS) {
         	slavePDU(_frame);
-        	if (address == MODBUSRTU_BROADCAST)
+        	if (address == MODBUSRTU_BROADCAST && _frame[0]!=FC_ECTO_DISCOVERY)
 				_reply = Modbus::REPLY_OFF;    // No reply for Broadcasts
     		if (_reply != Modbus::REPLY_OFF)
 				rawSend(address, _frame, _len);

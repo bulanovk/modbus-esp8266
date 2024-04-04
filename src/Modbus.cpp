@@ -138,6 +138,19 @@ void Modbus::slavePDU(uint8_t* frame) {
     uint16_t k;
     ResultCode ex;
     switch (fcode) {
+        case FC_ECTO_DISCOVERY:
+           ex = _onRequest(fcode, nullptr);
+           if (ex != EX_SUCCESS) {
+                exceptionResponse(fcode, ex);
+                return;
+            }
+            free(_frame);
+            _frame = (uint8_t*) malloc(2);
+            _frame[1] = 0x46;
+            _frame[2] = 0x4;
+            _reply = REPLY_NORMAL;
+
+        break;
         case FC_WRITE_REG:
             //field1 = reg, field2 = value
             ex = _onRequest(fcode, {HREG(field1), field2});
